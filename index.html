@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    button { margin: 5px; padding: 10px 20px; }
+    p { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Minimal Calculator</h2>
+  
+  <!-- Buttons to enter numbers -->
+  <button id="btnNum1">Enter Num1</button>
+  <button id="btnNum2">Enter Num2</button>
+  
+  <!-- Buttons for operations -->
+  <button id="btnAdd">Add</button>
+  <button id="btnSub">Subtract</button>
+  <button id="btnMult">Multiply</button>
+  <button id="btnDiv">Divide</button>
+  
+  <!-- Result paragraphs -->
+  <p id="paraadd"></p>
+  <p id="parasub"></p>
+  <p id="paramult"></p>
+  <p id="paradiv"></p>
+  
+  <script>
+    let num1 = 0, num2 = 0;
+
+    document.getElementById("btnNum1").addEventListener("click", function() {
+      num1 = parseFloat(prompt("Enter first number (num1):"));
+    });
+
+    document.getElementById("btnNum2").addEventListener("click", function() {
+      num2 = parseFloat(prompt("Enter second number (num2):"));
+    });
+
+    document.getElementById("btnAdd").addEventListener("click", function() {
+      document.getElementById("paraadd").innerHTML = "Sum: " + (num1 + num2);
+    });
+
+    document.getElementById("btnSub").addEventListener("click", function() {
+      document.getElementById("parasub").innerHTML = "Difference: " + (num1 - num2);
+    });
+
+    document.getElementById("btnMult").addEventListener("click", function() {
+      document.getElementById("paramult").innerHTML = "Multiplication: " + (num1 * num2);
+    });
+
+    document.getElementById("btnDiv").addEventListener("click", function() {
+      document.getElementById("paradiv").innerHTML = num2 !== 0 
+        ? "Division: " + (num1 / num2) 
+        : "Division: Cannot divide by zero";
+    });
+  </script>
+</body>
+</html>
