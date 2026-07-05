@@ -5,16 +5,16 @@
   <title>Simple Calculator</title>
   <style>
     body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    button { margin: 5px; padding: 10px 20px; }
+    input, button { margin: 5px; padding: 8px 12px; }
     p { font-weight: bold; }
   </style>
 </head>
 <body>
   <h2>Minimal Calculator</h2>
   
-  <!-- Buttons to enter numbers -->
-  <button id="btnNum1">Enter Num1</button>
-  <button id="btnNum2">Enter Num2</button>
+  <!-- Input fields -->
+  <input type="number" id="num1" placeholder="Enter Num1">
+  <input type="number" id="num2" placeholder="Enter Num2"><br>
   
   <!-- Buttons for operations -->
   <button id="btnAdd">Add</button>
@@ -29,31 +29,32 @@
   <p id="paradiv"></p>
   
   <script>
-    let num1 = 0, num2 = 0;
-
-    document.getElementById("btnNum1").addEventListener("click", function() {
-      num1 = parseFloat(prompt("Enter first number (num1):"));
-    });
-
-    document.getElementById("btnNum2").addEventListener("click", function() {
-      num2 = parseFloat(prompt("Enter second number (num2):"));
-    });
+    function getValues() {
+      return [
+        parseFloat(document.getElementById("num1").value) || 0,
+        parseFloat(document.getElementById("num2").value) || 0
+      ];
+    }
 
     document.getElementById("btnAdd").addEventListener("click", function() {
-      document.getElementById("paraadd").innerHTML = "Sum: " + (num1 + num2);
+      let [a, b] = getValues();
+      document.getElementById("paraadd").innerHTML = "Sum: " + (a + b);
     });
 
     document.getElementById("btnSub").addEventListener("click", function() {
-      document.getElementById("parasub").innerHTML = "Difference: " + (num1 - num2);
+      let [a, b] = getValues();
+      document.getElementById("parasub").innerHTML = "Difference: " + (a - b);
     });
 
     document.getElementById("btnMult").addEventListener("click", function() {
-      document.getElementById("paramult").innerHTML = "Multiplication: " + (num1 * num2);
+      let [a, b] = getValues();
+      document.getElementById("paramult").innerHTML = "Multiplication: " + (a * b);
     });
 
     document.getElementById("btnDiv").addEventListener("click", function() {
-      document.getElementById("paradiv").innerHTML = num2 !== 0 
-        ? "Division: " + (num1 / num2) 
+      let [a, b] = getValues();
+      document.getElementById("paradiv").innerHTML = b !== 0 
+        ? "Division: " + (a / b) 
         : "Division: Cannot divide by zero";
     });
   </script>
