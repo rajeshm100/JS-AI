@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Extended Calculator</title>
+  <title>Grouped Calculator</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 30px; }
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    section { margin-bottom: 25px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; }
+    h3 { margin-bottom: 10px; color: #333; }
     input, button { margin: 5px; padding: 8px 12px; }
-    p { font-weight: bold; }
+    p { font-weight: bold; margin: 5px 0; }
+    /* Colors for clarity */
     #paraadd { color: green; }
     #parasub { color: red; }
     #paramult { color: blue; }
@@ -25,45 +28,56 @@
   </style>
 </head>
 <body>
-  <h2>Extended Calculator</h2>
+  <h2>Grouped Calculator</h2>
   
   <!-- Input fields -->
   <input type="number" id="num1" placeholder="Enter Num1">
-  <input type="number" id="num2" placeholder="Enter Num2"><br>
+  <input type="number" id="num2" placeholder="Enter Num2">
   
-  <!-- Buttons for operations -->
-  <button id="btnAdd">Add</button>
-  <button id="btnSub">Subtract</button>
-  <button id="btnMult">Multiply</button>
-  <button id="btnDiv">Divide</button>
-  <button id="btnMod">Remainder</button>
-  <button id="btnPow1">Num1 ^ Num2</button>
-  <button id="btnPow2">Num2 ^ Num1</button>
-  <button id="btnSq1">Square Num1</button>
-  <button id="btnCube1">Cube Num1</button>
-  <button id="btnSq2">Square Num2</button>
-  <button id="btnCube2">Cube Num2</button>
-  <button id="btnSqrt1">√ Num1</button>
-  <button id="btnCuberoot1">∛ Num1</button>
-  <button id="btnSqrt2">√ Num2</button>
-  <button id="btnCuberoot2">∛ Num2</button>
+  <!-- Basic Arithmetic -->
+  <section>
+    <h3>Basic Arithmetic</h3>
+    <button id="btnAdd">Add</button>
+    <button id="btnSub">Subtract</button>
+    <button id="btnMult">Multiply</button>
+    <button id="btnDiv">Divide</button>
+    <button id="btnMod">Remainder</button>
+    <p id="paraadd"></p>
+    <p id="parasub"></p>
+    <p id="paramult"></p>
+    <p id="paradiv"></p>
+    <p id="paramod"></p>
+  </section>
   
-  <!-- Result paragraphs -->
-  <p id="paraadd"></p>
-  <p id="parasub"></p>
-  <p id="paramult"></p>
-  <p id="paradiv"></p>
-  <p id="paramod"></p>
-  <p id="parapow1"></p>
-  <p id="parapow2"></p>
-  <p id="parasq1"></p>
-  <p id="paracube1"></p>
-  <p id="parasq2"></p>
-  <p id="paracube2"></p>
-  <p id="parasqrt1"></p>
-  <p id="paracuberoot1"></p>
-  <p id="parasqrt2"></p>
-  <p id="paracuberoot2"></p>
+  <!-- Powers & Roots -->
+  <section>
+    <h3>Powers & Roots</h3>
+    <button id="btnPow1">Num1 ^ Num2</button>
+    <button id="btnPow2">Num2 ^ Num1</button>
+    <button id="btnSqrt1">√ Num1</button>
+    <button id="btnCuberoot1">∛ Num1</button>
+    <button id="btnSqrt2">√ Num2</button>
+    <button id="btnCuberoot2">∛ Num2</button>
+    <p id="parapow1"></p>
+    <p id="parapow2"></p>
+    <p id="parasqrt1"></p>
+    <p id="paracuberoot1"></p>
+    <p id="parasqrt2"></p>
+    <p id="paracuberoot2"></p>
+  </section>
+  
+  <!-- Squares & Cubes -->
+  <section>
+    <h3>Squares & Cubes</h3>
+    <button id="btnSq1">Square Num1</button>
+    <button id="btnCube1">Cube Num1</button>
+    <button id="btnSq2">Square Num2</button>
+    <button id="btnCube2">Cube Num2</button>
+    <p id="parasq1"></p>
+    <p id="paracube1"></p>
+    <p id="parasq2"></p>
+    <p id="paracube2"></p>
+  </section>
   
   <script>
     function getValues() {
@@ -73,79 +87,70 @@
       ];
     }
 
+    // Basic Arithmetic
     document.getElementById("btnAdd").addEventListener("click", () => {
       let [a, b] = getValues();
       document.getElementById("paraadd").innerHTML = "Sum: " + (a + b);
     });
-
     document.getElementById("btnSub").addEventListener("click", () => {
       let [a, b] = getValues();
       document.getElementById("parasub").innerHTML = "Difference: " + (a - b);
     });
-
     document.getElementById("btnMult").addEventListener("click", () => {
       let [a, b] = getValues();
       document.getElementById("paramult").innerHTML = "Multiplication: " + (a * b);
     });
-
     document.getElementById("btnDiv").addEventListener("click", () => {
       let [a, b] = getValues();
       document.getElementById("paradiv").innerHTML = b !== 0 ? "Division: " + (a / b) : "Division: Cannot divide by zero";
     });
-
     document.getElementById("btnMod").addEventListener("click", () => {
       let [a, b] = getValues();
       document.getElementById("paramod").innerHTML = b !== 0 ? "Remainder: " + (a % b) : "Remainder: Cannot divide by zero";
     });
 
+    // Powers & Roots
     document.getElementById("btnPow1").addEventListener("click", () => {
       let [a, b] = getValues();
       document.getElementById("parapow1").innerHTML = "Num1 ^ Num2: " + (a ** b);
     });
-
     document.getElementById("btnPow2").addEventListener("click", () => {
       let [a, b] = getValues();
       document.getElementById("parapow2").innerHTML = "Num2 ^ Num1: " + (b ** a);
     });
-
-    document.getElementById("btnSq1").addEventListener("click", () => {
-      let [a] = getValues();
-      document.getElementById("parasq1").innerHTML = "Square of Num1: " + (a ** 2);
-    });
-
-    document.getElementById("btnCube1").addEventListener("click", () => {
-      let [a] = getValues();
-      document.getElementById("paracube1").innerHTML = "Cube of Num1: " + (a ** 3);
-    });
-
-    document.getElementById("btnSq2").addEventListener("click", () => {
-      let [, b] = getValues();
-      document.getElementById("parasq2").innerHTML = "Square of Num2: " + (b ** 2);
-    });
-
-    document.getElementById("btnCube2").addEventListener("click", () => {
-      let [, b] = getValues();
-      document.getElementById("paracube2").innerHTML = "Cube of Num2: " + (b ** 3);
-    });
-
     document.getElementById("btnSqrt1").addEventListener("click", () => {
       let [a] = getValues();
       document.getElementById("parasqrt1").innerHTML = "√ Num1: " + Math.sqrt(a);
     });
-
     document.getElementById("btnCuberoot1").addEventListener("click", () => {
       let [a] = getValues();
       document.getElementById("paracuberoot1").innerHTML = "∛ Num1: " + Math.cbrt(a);
     });
-
     document.getElementById("btnSqrt2").addEventListener("click", () => {
       let [, b] = getValues();
       document.getElementById("parasqrt2").innerHTML = "√ Num2: " + Math.sqrt(b);
     });
-
     document.getElementById("btnCuberoot2").addEventListener("click", () => {
       let [, b] = getValues();
       document.getElementById("paracuberoot2").innerHTML = "∛ Num2: " + Math.cbrt(b);
+    });
+
+    // Squares & Cubes
+    document.getElementById("btnSq1").addEventListener("click", () => {
+      let [a] = getValues();
+      document.getElementById("parasq1").innerHTML = "Square of Num1: " + (a ** 2);
+    });
+    document.getElementById("btnCube1").addEventListener("click", () => {
+      let [a] = getValues();
+      document.getElementById("paracube1").innerHTML = "Cube of Num1: " + (a ** 3);
+    });
+    document.getElementById("btnSq2").addEventListener("click", () => {
+      let [, b] = getValues();
+      document.getElementById("parasq2").innerHTML = "Square of Num2: " + (b ** 2);
+    });
+    document.getElementById("btnCube2").addEventListener("click", () => {
+      let [, b] = getValues();
+      document.getElementById("paracube2").innerHTML = "Cube of Num2: " + (b ** 3);
     });
   </script>
 </body>
